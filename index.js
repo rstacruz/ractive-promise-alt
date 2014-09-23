@@ -5,7 +5,7 @@
   } else if (typeof exports === 'object') {
     module.exports = factory(require('ractive'));
   } else {
-    root.YourModule = factory(root.ractive);
+    factory(root.ractive);
   }
 
 }(this, function (Ractive) {
@@ -27,17 +27,20 @@
       ractive.set(prefixer(values));
     }
 
+    // set initial state
     ractive.set(keypath, {});
     update({ pending: true });
 
+    // listen to promise events
     obj.then(function (result) {
-      update({ pending: false, progress: false, result: result });
+      update({ pending: void 0, progress: void 0, result: result });
     }, function (err) {
-      update({ pending: false, progress: false, error: err });
+      update({ pending: void 0, progress: void 0, error: err });
     }, function (prog) {
-      update({ pending: true, progress: prog });
+      update({ pending: true,   progress: prog });
     });
 
+    // give Ractive a .get handler
     return {
       get: function () { return data; },
       set: function () {},

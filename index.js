@@ -31,9 +31,11 @@
     update({ pending: true });
 
     obj.then(function (result) {
-      update({ pending: false, result: result });
+      update({ pending: false, progress: false, result: result });
     }, function (err) {
-      update({ pending: false, error: err });
+      update({ pending: false, progress: false, error: err });
+    }, function (prog) {
+      update({ pending: true, progress: prog });
     });
 
     return {

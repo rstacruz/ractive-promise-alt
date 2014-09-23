@@ -46,6 +46,8 @@ This adaptor sets the following keys:
  * `result` - this will be the result of a successful promise. it will be absent
  in the case of an error.
  * `error` - this will be the result of a failing promise.
+ * `progress` - if the promise emits a progress update, the progress is reported
+ here.
 
 ### Usage
 

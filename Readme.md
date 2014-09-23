@@ -1,6 +1,6 @@
 # ractive-promise-alt
 
-Adaptor for Ractive that allows you to watch for a promise's status. This is an
+Adaptor for [Ractive] that allows you to watch for a [Promise]'s result and status. This is an
 alternate adaptor to [Ractive-adaptors-Promise].
 
 ```js
@@ -63,6 +63,8 @@ Based off [lluchs]/[Ractive-adaptors-Promise].
 
 [lluchs]: https://github.com/lluchs
 [Ractive-adaptors-Promise]: https://github.com/lluchs/Ractive-adaptors-Promise
+[Ractive]: http://ractivejs.org/
+[Promise]: http://promisesaplus.com/
 
 ### Thanks
 

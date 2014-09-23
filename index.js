@@ -10,7 +10,7 @@
 
 }(this, function (Ractive) {
 
-  Ractive.adaptors.promise = {
+  Ractive.adaptors['promise-alt'] = {
     filter: isPromise,
     wrap: wrap
   };

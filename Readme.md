@@ -1,6 +1,7 @@
-# ractive-promise
+# ractive-promise-alt
 
-Adaptor for Ractive that allows you to watch for a promise's status.
+Adaptor for Ractive that allows you to watch for a promise's status. This is an
+alternate adaptor to [Ractive-adaptors-Promise].
 
 ```js
 /* here's a function that returns a promise. */
@@ -9,7 +10,7 @@ function getUser() {
 }
 
 r = new Ractive({
-  adapt: ['promise']
+  adapt: ['promise-alt']
 });
 
 r.set('user', getUser());
@@ -33,6 +34,17 @@ You can inspect for the status like so:
 </div>
 ```
 
+### Usage
+
+No need to consume the return value.
+
+```js
+require('ractive-promise-alt');
+```
+
 ### Credits
 
-Based off [lluchs/Ractive-adaptors-Promise](https://github.com/lluchs/Ractive-adaptors-Promise).
+Based off [lluchs]/[Ractive-adaptors-Promise].
+
+[lluchs]: https://github.com/lluchs
+[Ractive-adaptors-Promise]: https://github.com/lluchs/Ractive-adaptors-Promise

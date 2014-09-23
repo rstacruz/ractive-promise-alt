@@ -4,11 +4,12 @@ var expect = require('chai').expect;
 var Ractive = require('ractive');
 var Promise = Ractive.Promise;
 
-var isPromise;
+var isPromise, adapt;
 
 describe('ractive-promise', function () {
   before(function () {
     require('../index');
+    adapt = Ractive.adaptors['promise-alt'];
   });
 
   function wait(ms, result) {
@@ -27,15 +28,15 @@ describe('ractive-promise', function () {
     });
   }
 
-  it('registers', function () {
-    expect(Ractive.adaptors.promise).be.an('object');
-    expect(Ractive.adaptors.promise.wrap).be.a('function');
-    expect(Ractive.adaptors.promise.filter).be.a('function');
+  it('registers itself', function () {
+    expect(adapt).be.an('object');
+    expect(adapt.wrap).be.a('function');
+    expect(adapt.filter).be.a('function');
   });
 
   describe('filter', function () {
     before(function () {
-      isPromise = Ractive.adaptors.promise.filter;
+      isPromise = adapt.filter;
     });
 
     it('works for true promises', function () {
@@ -53,7 +54,7 @@ describe('ractive-promise', function () {
 
     beforeEach(function () {
       view = new Ractive({
-        adapt: ['promise'],
+        adapt: ['promise-alt'],
         template:
           "{{#delay}}" +
           "pending[{{#pending}}true{{/pending}}] " +

@@ -13,26 +13,39 @@ r = new Ractive({
   adapt: ['promise-alt']
 });
 
+/* you'll then be able to consume the promise via ractive.set. */
 r.set('user', getUser());
 ```
 
-You can inspect for the status like so:
+In your template, you'll be able to inspect the promise's result (on success) or
+error message (on reject). You'll also be able to figure out the status of the promise.
 
 ```html
 <div>
-  {{#pending}}
-    Loading...
-  {{/pending}}
+  {{#user}}
+    {{#pending}}
+      Loading...
+    {{/pending}}
 
-  {{#result}}
-    Your name is: {{first}} {{last}}
-  {{/result}]
+    {{#result}}
+      Hello, {{first}} {{last}}!
+    {{/result}]
 
-  {{#error}}
-    An error occured: {{.}}
-  {{/error}}
+    {{#error}}
+      An error occured: {{.}}
+    {{/error}}
+  {{/user}}
 </div>
 ```
+
+### API
+
+This adaptor sets the following keys:
+
+ * `pending` - this will be `true` if the promise is still being processed.
+ * `result` - this will be the result of a successful promise. it will be absent
+ in the case of an error.
+ * `error` - this will be the result of a failing promise.
 
 ### Usage
 
@@ -48,3 +61,15 @@ Based off [lluchs]/[Ractive-adaptors-Promise].
 
 [lluchs]: https://github.com/lluchs
 [Ractive-adaptors-Promise]: https://github.com/lluchs/Ractive-adaptors-Promise
+
+### Thanks
+
+**ractive-promise-alt** © 2014+, Rico Sta. Cruz. Released under the [MIT] License.<br>
+Authored and maintained by Rico Sta. Cruz with help from contributors ([list][contributors]).
+
+> [ricostacruz.com](http://ricostacruz.com) &nbsp;&middot;&nbsp;
+> GitHub [@rstacruz](https://github.com/rstacruz) &nbsp;&middot;&nbsp;
+> Twitter [@rstacruz](https://twitter.com/rstacruz)
+
+[MIT]: http://mit-license.org/
+[contributors]: http://github.com/rstacruz/ractive-promise-alt/contributors

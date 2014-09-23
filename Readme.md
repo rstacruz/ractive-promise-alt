@@ -3,6 +3,10 @@
 Adaptor for [Ractive] that allows you to watch for a [Promise]'s result and status. This is an
 alternate adaptor to [Ractive-adaptors-Promise].
 
+*Find more Ractive.js plugins at [docs.ractivejs.org/latest/plugins](http://docs.ractivejs.org/latest/plugins)*
+
+[![Status](http://img.shields.io/travis/rstacruz/ractive-promise-alt/master.svg?style=flat)](https://travis-ci.org/rstacruz/ractive-promise-alt "See test builds")
+
 ```js
 /* here's a function that returns a promise. */
 function getUser() {
@@ -56,11 +60,24 @@ This adaptor sets the following keys:
 
 ### Usage
 
+ractive-promise-alt is available via npm.
+
+    $ npm install --save ractive-promise-alt
+
+[![npm version](http://img.shields.io/npm/v/ractive-promise-alt.svg?style=flat)](https://npmjs.org/package/ractive-promise-alt "View this project on npm")
 No need to consume the return value.
+
+__CommonJS usage:__ Require the module to use it. It automatically registers
+itself into either *window.Ractive* or *require('ractive')*, whichever's
+available. No need to use the return value.
 
 ```js
 require('ractive-promise-alt');
 ```
+
+__Standalone usage:__ For those not using npm, it's also available as a
+[standalone .js file](index.js). Be sure to include it after
+[ractive.js][Ractive].
 
 ### Credits
 

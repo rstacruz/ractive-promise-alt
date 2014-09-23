@@ -4,7 +4,7 @@ var expect = require('chai').expect;
 var Ractive = require('ractive');
 var Promise = Ractive.Promise;
 
-var isPromise, adapt;
+var isPromise, adapt, view, dealy;
 
 describe('ractive-promise', function () {
   before(function () {
@@ -50,8 +50,6 @@ describe('ractive-promise', function () {
   });
 
   describe('with promises', function () {
-    var view, delay;
-
     beforeEach(function () {
       view = new Ractive({
         adapt: ['promise-alt'],
@@ -72,7 +70,7 @@ describe('ractive-promise', function () {
     });
 
     it('sets fulfilled status', function () {
-      var delay = wait(30, 'Okay');
+      delay = wait(30, 'Okay');
       view.set('delay', delay);
 
       return delay.then(function () {
@@ -83,7 +81,7 @@ describe('ractive-promise', function () {
     });
 
     it('sets failed status', function () {
-      var delay = waitFail(30, 'Uh oh');
+      delay = waitFail(30, 'Uh oh');
       view.set('delay', delay);
 
       return delay.catch(function () {
@@ -93,6 +91,10 @@ describe('ractive-promise', function () {
       });
     });
   });
+
+  /*
+   * cancelling
+   */
 
   describe('cancelling promises', function () {
     var view, delay;
@@ -121,4 +123,55 @@ describe('ractive-promise', function () {
       });
     });
   });
+
+  /*
+   * returning objects
+   */
+
+  describe('with promises that return objects', function () {
+    beforeEach(function () {
+      view = new Ractive({
+        adapt: ['promise-alt'],
+        template:
+          "{{#delay}}" +
+          "  {{#result}}Hello, {{first}} {{last}}{{/result}}" +
+          "{{/delay}}"
+      });
+    });
+
+    it('works', function () {
+      delay = wait(30, { first: "Jon", last: "Snow" });
+      view.set('delay', delay);
+
+      return delay.then(function () {
+        expect(view.toHTML()).include('Hello, Jon Snow');
+      });
+    });
+  });
+
+  /*
+   * returning objects
+   */
+
+  describe('with promises that fail with errors', function () {
+    beforeEach(function () {
+      view = new Ractive({
+        adapt: ['promise-alt'],
+        template:
+          "{{#delay}}" +
+          "  {{#error}}Error: {{error.message}}{{/error}}" +
+          "{{/delay}}"
+      });
+    });
+
+    it('works', function () {
+      delay = waitFail(30, new Error("Drats"));
+      view.set('delay', delay);
+
+      return delay.catch(function () {
+        expect(view.toHTML()).include('Error: Drats');
+      });
+    });
+  });
+
 });

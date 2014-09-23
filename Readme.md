@@ -44,10 +44,13 @@ This adaptor sets the following keys:
 
  * __`pending`__ - this will be `true` if the promise is still being processed. It
  will be `undefined` as soon as the promise resolves/rejects.
+
  * __`result`__ - this will be the result of a resolved (successful) promise. It
  will be `undefined` when pending or in the case of an error.
+
  * __`error`__ - this will be the result of a rejected (failing) promise. It will be
  `undefined` when pending or if the promise resolves.
+
  * __`progress`__ - if the promise emits a progress update, the progress is reported
  here. This is only available when a Promise is still pending.
 

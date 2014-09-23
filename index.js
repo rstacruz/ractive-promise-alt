@@ -1,7 +1,3 @@
-/*
- * based off lluchs/Ractive-adaptors-Promise
- */
-
 ;(function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
@@ -27,23 +23,19 @@
     var removed;
     var data = {};
 
-    function update () {
-      ractive.set(keypath, data);
+    function update (values) {
+      data = values;
+      ractive.set(keypath, values);
     }
 
-    data = { pending: true };
-    update();
+    update({ pending: true });
 
     obj.then(function (result) {
-      if (!removed) {
-        data = { result: result };
-        update();
-      }
+      if (removed) return;
+      update({ result: result });
     }, function (err) {
-      if (!removed) {
-        data = { error: err };
-        update();
-      }
+      if (removed) return;
+      update({ error: err });
     });
 
     return {
@@ -51,14 +43,6 @@
       set: function () {},
       reset: function () { return false; },
       teardown: function () { removed = true; }
-    };
-  }
-
-  function status (state) {
-    return {
-      pending:   (state === 'pending'),
-      fulfilled: (state === 'fulfilled'),
-      rejected:  (state === 'rejected')
     };
   }
 

@@ -32,7 +32,7 @@ error message (on reject). You'll also be able to figure out the status of the p
 
     {{#result}}
       Hello, {{first}} {{last}}!
-    {{/result}]
+    {{/result}}
 
     {{#error}}
       An error occured: {{.}}

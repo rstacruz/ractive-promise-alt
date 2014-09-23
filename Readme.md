@@ -1,7 +1,6 @@
 # ractive-promise-alt
 
-Adaptor for [Ractive] that allows you to watch for a [Promise]'s result and status. This is an
-alternate adaptor to [Ractive-adaptors-Promise].
+Adaptor for [Ractive] that allows you to watch for a [Promise]'s result and status.
 
 *Find more Ractive.js plugins at [docs.ractivejs.org/latest/plugins](http://docs.ractivejs.org/latest/plugins)*
 
@@ -57,6 +56,15 @@ This adaptor sets the following keys:
 
  * __`progress`__ - if the promise emits a progress update, the progress is reported
  here. This is only available when a Promise is still pending.
+
+### Differences
+
+This is an alternate adaptor to [Ractive-adaptors-Promise]. ractive-promise-alt
+provides a few more features:
+
+ * Status reporting
+ * Progress events
+ * Errors are treated differently from results
 
 ### Usage
 

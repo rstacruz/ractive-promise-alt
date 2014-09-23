@@ -49,7 +49,7 @@ describe('ractive-promise', function () {
     });
   });
 
-  describe('with fulfilled promises', function () {
+  describe('with promises', function () {
     var view, delay;
 
     beforeEach(function () {
@@ -57,9 +57,9 @@ describe('ractive-promise', function () {
         adapt: ['promise-alt'],
         template:
           "{{#delay}}" +
-          "pending[{{#pending}}true{{/pending}}] " +
-          "result[{{result}}] " +
-          "error[{{error}}] " +
+          "  pending[{{#pending}}true{{/pending}}] " +
+          "  result[{{result}}] " +
+          "  error[{{error}}] " +
           "{{/delay}}"
       });
     });
@@ -90,6 +90,34 @@ describe('ractive-promise', function () {
         expect(view.toHTML()).include('pending[]');
         expect(view.toHTML()).include('result[]');
         expect(view.toHTML()).include('error[Uh oh]');
+      });
+    });
+  });
+
+  describe('cancelling promises', function () {
+    var view, delay;
+
+    beforeEach(function () {
+      view = new Ractive({
+        adapt: ['promise-alt'],
+        template:
+          "{{#show}}" +
+          "  {{#delay}}" +
+          "    pending[{{#pending}}true{{/pending}}] " +
+          "    result[{{result}}] " +
+          "    error[{{error}}] " +
+          "  {{/delay}}" +
+          "{{/show}}"
+      });
+    });
+
+    it('sets pending', function () {
+      view.set('show', true);
+      view.set('delay', wait(30));
+      expect(view.toHTML()).include('pending[true]');
+      view.teardown();
+      return wait(60).then(function () {
+        /* just make sure no errors happen. */
       });
     });
   });

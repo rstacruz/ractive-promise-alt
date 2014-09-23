@@ -20,29 +20,27 @@
   }
 
   function wrap (ractive, obj, keypath, prefixer) {
-    var removed;
     var data = {};
 
     function update (values) {
       data = values;
-      ractive.set(keypath, values);
+      ractive.set(prefixer(values));
     }
 
+    ractive.set(keypath, {});
     update({ pending: true });
 
     obj.then(function (result) {
-      if (removed) return;
-      update({ result: result });
+      update({ pending: false, result: result });
     }, function (err) {
-      if (removed) return;
-      update({ error: err });
+      update({ pending: false, error: err });
     });
 
     return {
       get: function () { return data; },
       set: function () {},
       reset: function () { return false; },
-      teardown: function () { removed = true; }
+      teardown: function () {}
     };
   }
 

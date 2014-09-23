@@ -73,7 +73,6 @@ ractive-promise-alt is available via npm.
     $ npm install --save ractive-promise-alt
 
 [![npm version](http://img.shields.io/npm/v/ractive-promise-alt.svg?style=flat)](https://npmjs.org/package/ractive-promise-alt "View this project on npm")
-No need to consume the return value.
 
 __CommonJS usage:__ Require the module to use it. It automatically registers
 itself into either *window.Ractive* or *require('ractive')*, whichever's

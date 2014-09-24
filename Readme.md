@@ -54,7 +54,9 @@ This adaptor sets the following keys:
  will be `undefined` when pending or in the case of an error.
 
  * __`resolved`__<br>
- will be `true` when the progress resolves and a `result` is available.
+ will be `true` when the progress resolves and a `result` is available. This 
+ allows you to inspect the status of a promise without consuming its result 
+ value.
 
  * __`error`__<br>
  will be the result of a rejected (failing) promise. It will be

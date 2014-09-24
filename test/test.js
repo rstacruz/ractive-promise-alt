@@ -80,6 +80,15 @@ describe('ractive-promise', function () {
       });
     });
 
+    it('sets resolved to true', function () {
+      delay = wait(30, 'Okay');
+      view.set('delay', delay);
+
+      return delay.then(function () {
+        expect(view.get('delay.resolved')).eql(true);
+      });
+    });
+
     it('sets failed status', function () {
       delay = waitFail(30, 'Uh oh');
       view.set('delay', delay);

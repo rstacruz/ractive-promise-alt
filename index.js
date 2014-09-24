@@ -33,7 +33,7 @@
 
     // listen to promise events
     obj.then(function (result) {
-      update({ pending: void 0, progress: void 0, result: result });
+      update({ pending: void 0, progress: void 0, resolved: true, result: result });
     }, function (err) {
       update({ pending: void 0, progress: void 0, error: err });
     }, function (prog) {

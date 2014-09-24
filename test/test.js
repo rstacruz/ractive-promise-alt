@@ -174,4 +174,36 @@ describe('ractive-promise', function () {
     });
   });
 
+  /*
+   * handle cases where promises are overridden.
+   * when the first one resolves, it should be ignored.
+   */
+
+  describe('overriding old promises', function () {
+    var long, short;
+
+    beforeEach(function () {
+      view = new Ractive({
+        adapt: ['promise-alt'],
+        template: "{{#delay}} result: {{result}} {{/delay}}"
+      });
+
+    });
+
+    it('works', function () {
+      long  = wait(80, "long");
+      short = wait(25, "short");
+
+      view.set('delay', long);
+
+      wait(0).then(function () {
+        view.set('delay', short);
+      });
+
+      return long.then(function () {
+        expect(view.toHTML()).include('result: short');
+      });
+    });
+  });
+
 });

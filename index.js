@@ -5,7 +5,7 @@
   } else if (typeof exports === 'object') {
     module.exports = factory(require('ractive'));
   } else {
-    factory(root.ractive);
+    factory(root.Ractive);
   }
 
 }(this, function (Ractive) {

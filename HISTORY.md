@@ -6,7 +6,7 @@
 
 ## v0.5.2 - September 25, 2014
 
-* Fixes standalone functionality. (@danburzo, #1)
+* Fixes standalone functionality. ([@danburzo], [#1])
 
 ## v0.5.1 - September 25, 2014
 
@@ -16,3 +16,6 @@ the result.
 ## v0.5.0 - September 24, 2014
 
 * First release.
+
+[#1]: https://github.com/git@github.com:rstacruz/ractive-promise-alt/issues/1
+[@danburzo]: https://github.com/danburzo

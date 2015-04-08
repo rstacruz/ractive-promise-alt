@@ -1,6 +1,6 @@
 {
   "name": "ractive-promise-alt",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Adaptor for Ractive that allows you to watch for a Promise's result and status.",
   "main": "index.js",
   "scripts": {

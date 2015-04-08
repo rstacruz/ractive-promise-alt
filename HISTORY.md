@@ -1,3 +1,9 @@
+## v0.5.3 - Apr 8, 2015
+
+* Add LICENSE file
+* Update package.json to point repository to GitHub
+* No actual functionality changes
+
 ## v0.5.2 - September 25, 2014
 
 * Fixes standalone functionality. (@danburzo, #1)

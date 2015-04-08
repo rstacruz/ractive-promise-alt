@@ -1,7 +1,7 @@
 {
   "name": "ractive-promise-alt",
   "version": "0.5.2",
-  "description": "",
+  "description": "Adaptor for Ractive that allows you to watch for a Promise's result and status.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -15,5 +15,16 @@
     "chai": "^1.9.1",
     "mocha": "^1.21.4",
     "ractive": "^0.5.8"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rstacruz/ractive-promise-alt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rstacruz/ractive-promise-alt/issues"
+  },
+  "homepage": "https://github.com/rstacruz/ractive-promise-alt"
 }
